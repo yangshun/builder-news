@@ -50,11 +50,24 @@ function MainCtrl ($scope) {
 
   $scope.bookmarkItem = function (item) {
     if (_.pluck($scope.bookmarks, 'url').indexOf(item.url) > -1) {
-      $scope.bookmarks = _.reject($scope.bookmarks, function(bm){ return bm.url == item.url; });
+      $.UIPopup({
+        id: 'warning',
+        title: 'Remove Favourite', 
+        message: 'Do you really want to remove the favourited link "' + item.title + '"?',
+        cancelButton: 'No', 
+        continueButton: 'Yes', 
+        callback: function() {
+          $scope.bookmarks = _.reject($scope.bookmarks, function(bm) { 
+            return bm.url == item.url; 
+          });
+          localforage.setItem('bookmarks', $scope.bookmarks);
+          $scope.$apply();
+        }
+      });
     } else {
       $scope.bookmarks.push(item);
+      localforage.setItem('bookmarks', $scope.bookmarks);
     }
-    localforage.setItem('bookmarks', $scope.bookmarks);
   }
 
   $scope.checkBookmark = function (url) {
