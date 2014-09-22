@@ -6,26 +6,41 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="msapplication-tap-highlight" content="no">
-  <title>ChocolateChip-UI iOS</title>
+  <title>Builder News</title>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/chui-ios-3.7.0.min.css">
+  <link rel="stylesheet" href="css/style.css">
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/chui-3.7.0.min.js"></script>
+  <script src="js/underscore-min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-  <script type="text/javascript">
-    var news = [];
-    
-    
-  </script>
 </head>
 <body ng-app ng-controller="MainCtrl">
   <nav>
-    <h1>Hacker Designer News</h1>
+    <h1>Builder News</h1>
   </nav>
   <article id="main" class="current">
     <section>
+      <div class="horizontal centered">
+        <div class="segmented bn-segments">
+          <a class="button bn-all selected" ng-click="displayNews('all')">All</a>
+          <a class="button bn-hn" ng-click="displayNews('hackernews')">Hacker</a>
+          <a class="button bn-dn" ng-click="displayNews('designernews')">Designer</a>
+        </div>
+      </div>
       <ul class="list">
-        <li data-goto="segmented-article" ng-repeat="item in news" class="nav">
-          <h3>{{item.title}}</h3>
+        <li data-goto="segmented-article" ng-repeat="item in displayedNews" class="nav">
+          <span class="bn-rank">{{$index + 1}}</span>
+          <div class="bn-news-item">
+            <h3 class="bn-news-title">{{item.title}} 
+              <span ng-show="item.domain.length > 0" class="bn-news-domain">({{item.domain}})</span>
+            </h3>
+            <div>
+              <span>{{item.points}} points</span> and <span>{{item.comments}}</span> &middot;
+              <span>{{item.time}}</span> by {{item.author}} &middot;
+              <span class="{{item.type}}">{{{designernews: 'Designer News', hackernews: 'Hacker News'}[item.type]}}</span>
+            </div>
+          </div>
         </li>
         <!-- <li data-goto="segmented-article" class='nav'>
           <h3>Segmented Control</h3>
@@ -131,6 +146,7 @@
       </div>
     </section>
   </article>
+  <script src="js/main.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

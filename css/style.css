@@ -1,0 +1,108 @@
+*, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+}
+
+nav {
+  background-color: #2c3e50;
+}
+
+nav h1 {
+  color: #fff;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+}
+
+.slide-out > section, 
+article > section {
+  padding-top: 0;
+}
+
+.list>li::before {
+  left: 0;
+}
+
+.bn-segments .button {
+  width: 33.33%;
+}
+
+.segmented:not(.paging)>.button,
+.segmented:not(.paging)>.button:first-of-type {
+  border-color: #2c3e50;
+  border-left-color: #2c3e50;
+}
+
+.isDesktop .segmented:not(.paging)>.button:hover, 
+.segmented:not(.paging)>.button.selected {
+  background-color: #ecf0f1;
+}
+
+.segmented .button {
+  font-weight: 600;
+}
+
+.bn-all {
+  color: #2c3e50 !important;
+}
+
+.bn-all.selected {
+  background-color: #2c3e50 !important;
+  color: #fff !important;
+}
+
+.bn-hn {
+  color: #ee6218 !important;
+}
+
+.bn-hn.selected {
+  background-color: #ee6218 !important;
+  color: #fff !important
+}
+
+.bn-dn {
+  color: #2753d2 !important;
+}
+
+.bn-dn.selected {
+  background-color: #2753d2 !important;
+  color: #fff !important;
+}
+
+.bn-rank {
+  color: #c3c9d2;
+  display: inline-block;
+  float: left;
+  font-size: 24px;
+  font-weight: 600;
+  height: 100%;
+  text-align: right;
+  width: 20px;
+}
+
+.bn-news-type {
+  display: inline-block;
+  border-radius: 16px;
+  height: 32px;
+  width: 32px;
+}
+
+.hackernews {
+  color: #ee6218;
+}
+
+.designernews {
+  color: #2753d2;
+}
+
+
+.bn-news-item {
+  padding-left: 40px;
+  padding-right: 20px;
+}
+
+.bn-news-title {
+  font-size: 16px;
+  margin: 0;
+}
+
+.bn-news-domain {
+  color: #999;
+}
