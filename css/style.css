@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: #fff;
+  background-color: #fafafa;
 }
 
 nav {
@@ -12,6 +12,7 @@ nav {
 
 nav h1 {
   color: #fff;
+  font-weight: 700;
   font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
 }
 
@@ -55,7 +56,30 @@ a.button.backTo::before {
   background-color: #fff;
 }
 
+/* Tab Bar */
+.tabbar>.button>.icon,
+.isDesktop .tabbar>.button:hover>.icon,
+.tabbar>.button.selected>.icon {
+  background-color: transparent !important; 
+}
+
+.tabbar .fa {
+  margin-right: 6px;
+  margin-top: 10px;
+  position: relative;
+  top: 4px;
+}
+
+.tabbar label {
+  font-size: 16px;
+}
+
 /* Segmented Selectors */
+
+.bn-segment-container {
+  margin: 0 auto;
+  max-width: 768px;
+}
 
 .bn-all {
   color: #2c3e50 !important;
@@ -135,14 +159,51 @@ a.button.backTo::before {
   color: #999;
 }
 
-.bn-news-row {
+li {
   cursor: pointer;
 }
 
-.bn-news-row:hover {
+li:hover {
   background-color: #ededed;
 }
 
 .fa-star {
   color: #eaa716;
+}
+
+/* About Page */
+.bn-icon {
+  border-radius: 12px;
+  display: block;
+  margin: 50px auto;
+  margin-bottom: 30px;
+  width: 128px;
+}
+
+.bn-about-list .fa {
+  margin-right: 10px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.contact-icon {
+  color: #999;
+}
+
+.bn-app-name {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0;
+  overflow: inherit;
+  text-transform: inherit;
+}
+
+.list {
+  border-left: 1px solid #c8c8c8;
+  border-right: 1px solid #c8c8c8;
+  margin: 0 auto;
+  max-width: 768px;
 }

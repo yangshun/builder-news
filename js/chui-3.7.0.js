@@ -2105,13 +2105,13 @@ if(window.jQuery) {
       $('body').addClass('hasTabBar');
       if ($.isiOS6) $('body').addClass('isiOS6');
       var tabbar = '<div class="tabbar" id="' + settings.id + '">';
-      var icon = ($.isiOS || $.isSafari) ? '<span class="icon"></span>' : '';
       var articles = $('article');
       for (var i = 0; i < settings.tabs; i++) {
-        tabbar += '<a class="button ' + settings.icons[i];
+        tabbar += '<a class="button';
         if (settings.selected === i+1) {
           tabbar += ' selected';
         }
+        var icon = '<i class="' + settings.icons[i] + '"></i>';
         tabbar += '">' + icon + '<label>' + settings.labels[i] + '</label></a>';
       }
       tabbar += '</div>';
