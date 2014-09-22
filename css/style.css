@@ -203,6 +203,18 @@ li:hover {
   color: #ffbf00;
 }
 
+/* Favourites Page */
+
+.empty-favourites {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+  font-size: 24px;
+  overflow: inherit;
+}
+
+.empty-favourites-container {
+  margin-top: 50px;
+}
+
 /* About Page */
 .bn-icon {
   border-radius: 12px;
@@ -236,3 +248,4 @@ li:hover {
   overflow: inherit;
   text-transform: inherit;
 }
+
