@@ -26,6 +26,7 @@
 
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/animate.min.css">
   <link rel="stylesheet" href="css/chui-ios-3.7.0.min.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -77,7 +78,8 @@
           <a class="button bn-dn" ng-click="displayNews('designernews')">Designer</a>
         </div>
       </div>
-      <ul class="list">
+      <img src="img/loader.gif" class="loader" ng-show="!loaded">
+      <ul class="list builder-news">
         <li ng-repeat="item in displayedNews" class="bn-news-row">
           <span class="bn-rank">{{$index + 1}}</span>
           <span class="bn-star" ng-click="bookmarkItem(item)">

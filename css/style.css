@@ -56,7 +56,23 @@ a.button.backTo::before {
   background-color: #fff;
 }
 
+.list {
+  border-left: 1px solid #c8c8c8;
+  border-right: 1px solid #c8c8c8;
+  border: none;
+  background: none;
+  margin: 0 auto;
+  max-width: 768px;
+}
+
+.loader {
+  display: block;
+  margin: 100px auto;
+  width: 128px;
+}
+
 /* Tab Bar */
+
 .tabbar>.button>.icon,
 .isDesktop .tabbar>.button:hover>.icon,
 .tabbar>.button.selected>.icon {
@@ -109,6 +125,22 @@ a.button.backTo::before {
 }
 
 /* News Items */
+
+.builder-news {
+  opacity: 0;
+}
+
+.builder-news.loaded {
+  opacity: 1;
+}
+
+.builder-news li {
+  opacity: 0;
+}
+
+.builder-news li.animated {
+  opacity: 1;
+}
 
 .bn-rank {
   color: #c3c9d2;
@@ -199,11 +231,4 @@ li:hover {
   margin: 0;
   overflow: inherit;
   text-transform: inherit;
-}
-
-.list {
-  border-left: 1px solid #c8c8c8;
-  border-right: 1px solid #c8c8c8;
-  margin: 0 auto;
-  max-width: 768px;
 }

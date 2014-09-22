@@ -3,6 +3,7 @@ function MainCtrl ($scope) {
   $scope.displayedNews = [];
   $scope.currentFilter = 'all';
   $scope.selectedItem = null;
+  $scope.loaded = false;
   
   localforage.getItem('bookmarks', function (bookmarks) {
     if (!bookmarks) {
@@ -27,7 +28,20 @@ function MainCtrl ($scope) {
         return item.type === type;
       }
       return true;
-    })
+    });
+    $('.builder-news li').removeClass('animated');
+    var i = 0;
+    setTimeout(function () {
+      $('.builder-news li').each(function () {
+        var that = this;
+        (function (delay) {
+          setTimeout(function () {
+            $(that).addClass('animated bounceInUp');  
+          }, delay);
+        }(i * 100));
+        i++;
+      });
+    }, 0);
   };
 
   $scope.selectItem = function (item) {
@@ -134,7 +148,21 @@ function MainCtrl ($scope) {
       return item.points;
     });
     $scope.news.reverse();
-    $scope.displayNews('all'); 
+    $scope.loaded = true;
+    $scope.displayNews('all');
+    var i = 0;
+    $('.builder-news').addClass('loaded');
+    // setTimeout(function () {
+    //   $('.builder-news li').each(function () {
+    //     var that = this;
+    //     (function (delay) {
+    //       setTimeout(function () {
+    //         $(that).addClass('animated bounceInUp');  
+    //       }, delay);
+    //     }(i * 100));
+    //     i++;
+    //   });
+    // }, 0);
     $scope.$apply();
   }
 }

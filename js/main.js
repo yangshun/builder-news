@@ -5,10 +5,10 @@ $(function () {
   });
 
   $.UITabbar({
-      tabs : 3,
-      icons : ['fa fa-info-circle fa-2x', 'fa fa-newspaper-o fa-2x', 'fa fa-star-o fa-2x'],
-      labels : ['About', 'Home', 'Favorites'],
-      selected : 1
+    tabs : 3,
+    icons : ['fa fa-info-circle fa-2x', 'fa fa-newspaper-o fa-2x', 'fa fa-star-o fa-2x'],
+    labels : ['About', 'Home', 'Favorites'],
+    selected : 2
   });
 
   $('.bn-about-list li').on('singletap', function () {
