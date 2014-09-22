@@ -2,6 +2,7 @@ function MainCtrl ($scope) {
   $scope.news = [];
   $scope.displayedNews = [];
   $scope.currentFilter = 'all';
+  $scope.selectedItem = null;
   
   function calculateTimeAgo (timeAgoString) {
     if (timeAgoString.indexOf('minute') > -1) {
@@ -20,7 +21,16 @@ function MainCtrl ($scope) {
       }
       return true;
     })
-  }
+  };
+
+  $scope.selectItem = function (item) {
+    $scope.selectedItem = item;
+    $('#bn-article-iframe').attr('src', item.url);
+  };
+
+  $scope.backToNews = function () {
+    $('#bn-article-iframe').attr('src', '');
+  };
 
   $.ajax({
     method: 'GET',

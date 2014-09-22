@@ -29,7 +29,7 @@
         </div>
       </div>
       <ul class="list">
-        <li data-goto="segmented-article" ng-repeat="item in displayedNews" class="nav">
+        <li data-goto="segmented-article" ng-repeat="item in displayedNews" class="nav" ng-click="selectItem(item)">
           <span class="bn-rank">{{$index + 1}}</span>
           <div class="bn-news-item">
             <h3 class="bn-news-title">{{item.title}} 
@@ -42,108 +42,16 @@
             </div>
           </div>
         </li>
-        <!-- <li data-goto="segmented-article" class='nav'>
-          <h3>Segmented Control</h3>
-        </li>
-        <li data-goto="select-article" class='nav'>
-          <h3>Select List</h3>
-        </li>
-        <li data-goto="deletable-article" class='nav'>
-          <h3>Editable List</h3>
-        </li>
-        <li data-goto="popup-article" class='nav'>
-          <h3>Popup</h3>
-        </li>
-        <li data-goto="popover-article" class='nav'>
-          <h3>Popover</h3>
-        </li>
-        <li data-goto="sheet-article" class='nav'>
-          <h3>Sheet</h3>
-        </li>
-        <li data-goto="paging-article" class='nav'>
-          <h3>Paging</h3>
-        </li> -->
       </ul>
     </section>
   </article>
   <nav>
-    <a class='button back'>Demo</a>
-    <h1>Segmented Control</h1>
+    <a class="button back" ng-click="backToNews()">Back</a>
+    <h1>{{selectedItem.title}}</h1>
   </nav>
   <article id='segmented-article' class='next'>
     <section>
-      <div class='horizontal centered'>
-        <div class='segmented'>
-          <a class='button selected'>Switch</a>
-          <a class='button'>Range</a>
-          <a class='button'>Stepper</a>
-        </div>
-      </div>
-      <div id="toggle-panels">
-        <div id='switches'>
-          <h2>Switch</h2>
-          <ul class='list'>
-            <li class='comp'>
-              <div>
-                <h3>Sleep</h3>
-              </div>
-              <aside>
-              </aside>
-            </li>
-          </ul>
-          <ul class='list'>
-            <li class='comp'>
-              <div>
-                <h3>Vacation</h3>
-              </div>
-              <aside>
-              </aside>
-            </li>
-          </ul>
-          <ul class='list'>
-            <li class='comp'>
-              <div>
-                <h3>Breakfast</h3>
-              </div>
-              <aside>
-              </aside>
-            </li>
-          </ul>
-          <p><span>Response: </span><span id="switch-response"></span></p>
-
-        </div>
-        <div>
-          <h2>Range</h2>
-          <ul class='list'>
-            <li>
-              <h3>Point for Point Increase<span></span></h3>
-              <div>
-                <label>Current Value: <span id='rangeValue1'></span></label>
-                <input type="range" id="rangeControl1" value="10" min="0" max="40">
-              </div>
-            </li>
-          </ul>
-          <ul class='list' ui-li-order="stacked" ui-kind='grouped'>
-            <li>
-              <h3>With Steps of 5<span></span></h3>
-              <div>
-                <label>Current Value: <span id='rangeValue2'></span></label>
-                <input type="range" id="rangeControl2" step='5' value="20" min="0" max="40">    
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h2>Stepper: 1-8 limit</h2>
-          <ul class='list'>
-            <li>
-              <h3>Choose a value:</h3>
-              <span class='stepper' id="digits"></span>
-            </li>
-          </ul>
-          <p>The stepper is used for presenting the user with a very small range of values. If you have a large range, consider using a normal HTML select box. This will give the user the appropriate interface for each Operating System.</p>
-        </div>
-      </div>
+      <iframe id="bn-article-iframe"></iframe>
     </section>
   </article>
   <script src="js/main.js"></script>
