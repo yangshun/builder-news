@@ -4,6 +4,13 @@ function MainCtrl ($scope) {
   $scope.currentFilter = 'all';
   $scope.selectedItem = null;
   
+  localforage.getItem('bookmarks', function (bookmarks) {
+    if (!bookmarks) {
+      bookmarks = [];
+    }
+    $scope.bookmarks = bookmarks;
+  });
+
   function calculateTimeAgo (timeAgoString) {
     if (timeAgoString.indexOf('minute') > -1) {
       return parseInt(timeAgoString);
@@ -24,14 +31,25 @@ function MainCtrl ($scope) {
   };
 
   $scope.selectItem = function (item) {
-    // $scope.selectedItem = item;
-    // $('#bn-article-iframe').attr('src', item.url);
     window.open(item.url, '_blank');
   };
 
-  $scope.backToNews = function () {
-    $('#bn-article-iframe').attr('src', 'about:blank');
-  };
+  $scope.bookmarkItem = function (item) {
+    if (_.pluck($scope.bookmarks, 'url').indexOf(item.url) > -1) {
+      $scope.bookmarks = _.reject($scope.bookmarks, function(bm){ return bm.url == item.url; });
+    } else {
+      $scope.bookmarks.push(item);
+    }
+    localforage.setItem('bookmarks', $scope.bookmarks);
+  }
+
+  $scope.checkBookmark = function (url) {
+    if (_.pluck($scope.bookmarks, 'url').indexOf(url) > -1) {
+      return 'fa-star';
+    } else {
+      return 'fa-star-o';
+    }
+  }
 
   var hackerNews = [];
   var hackerNewsLoaded = false;

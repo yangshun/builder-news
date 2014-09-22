@@ -8,16 +8,21 @@
   <meta name="msapplication-tap-highlight" content="no">
   <title>Builder News</title>
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/chui-ios-3.7.0.min.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/chui-3.7.0.min.js"></script>
   <script src="js/underscore-min.js"></script>
+  <script src="js/localforage.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
 </head>
 <body ng-app ng-controller="MainCtrl">
   <nav>
     <h1>Builder News</h1>
+    <a class="button align-flush" id="bookmarks-nav">
+      <i class="fa fa-bars"></i>
+    </a>
   </nav>
   <article id="main" class="current">
     <section>
@@ -29,9 +34,12 @@
         </div>
       </div>
       <ul class="list">
-        <li ng-repeat="item in displayedNews" class="nav" ng-click="selectItem(item)">
+        <li ng-repeat="item in displayedNews" class="bn-news-row">
           <span class="bn-rank">{{$index + 1}}</span>
-          <div class="bn-news-item">
+          <span class="bn-star" ng-click="bookmarkItem(item)">
+            <i class="fa {{checkBookmark(item.url)}} fa-2x"></i>
+          </span>
+          <div class="bn-news-item" ng-click="selectItem(item)">
             <h3 class="bn-news-title">{{item.title}} 
               <span ng-show="item.domain.length > 0" class="bn-news-domain">({{item.domain}})</span>
             </h3>
@@ -46,12 +54,29 @@
     </section>
   </article>
   <nav>
-    <a class="button back" ng-click="backToNews()">Back</a>
-    <h1>{{selectedItem.title}}</h1>
+    <a class="button back">Back</a>
+    <h1>Bookmarks</h1>
   </nav>
-  <article id='segmented-article' class='next'>
+  <article id="bookmarks" class="next">
     <section>
-      <iframe id="bn-article-iframe"></iframe>
+      <ul class="list">
+        <li ng-repeat="item in bookmarks" class="bn-news-row">
+          <span class="bn-rank">{{$index + 1}}</span>
+          <span class="bn-star" ng-click="bookmarkItem(item)">
+            <i class="fa fa-times fa-lg"></i>
+          </span>
+          <div class="bn-news-item" ng-click="selectItem(item)">
+            <h3 class="bn-news-title">{{item.title}} 
+              <span ng-show="item.domain.length > 0" class="bn-news-domain">({{item.domain}})</span>
+            </h3>
+            <div>
+              <span>{{item.points_text}}</span> and <span>{{item.comments}}</span> &middot;
+              <span>{{item.time}}</span> by {{item.author}} &middot;
+              <span class="{{item.type}}">{{{designernews: 'Designer News', hackernews: 'Hacker News'}[item.type]}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
     </section>
   </article>
   <script src="js/main.js"></script>
