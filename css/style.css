@@ -15,6 +15,14 @@ nav h1 {
   font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
 }
 
+.nav {
+  cursor: pointer;
+}
+
+.nav:hover {
+  background-color: #ededed;
+}
+
 .slide-out > section, 
 article > section {
   padding: 0 !important;
@@ -44,7 +52,7 @@ article > section {
 }
 
 a.button.back, 
-a.button.backTo, {
+a.button.backTo {
   color: #fff;
 }
 
