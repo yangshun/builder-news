@@ -200,7 +200,7 @@ li:hover {
 }
 
 .fa-star {
-  color: #eaa716;
+  color: #ffbf00;
 }
 
 /* About Page */
@@ -210,6 +210,10 @@ li:hover {
   margin: 50px auto;
   margin-bottom: 30px;
   width: 128px;
+}
+
+.bn-about-list {
+  max-width: 400px;
 }
 
 .bn-about-list .fa {
