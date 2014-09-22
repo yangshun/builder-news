@@ -10,4 +10,9 @@ $(function () {
       labels : ['About', 'Home', 'Favorites'],
       selected : 1
   });
+
+  $('.bn-about-list li').on('singletap', function () {
+    var url = $(this).attr('data-link');
+    window.open(url, '_blank');
+  });
 });
