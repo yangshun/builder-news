@@ -29,7 +29,7 @@ Builder News is a Hacker News and Designer News aggregator. It shows the top lin
   - Navigation List
     - Main List on Home page
   - Segmented Panel
-    - News Type Selector on Home page
+    - "News Type" Selector on Home page
   - Popup
     - Favourite a link by pressing the star icon on a link.
     - Press the star icon again.
@@ -38,7 +38,7 @@ Builder News is a Hacker News and Designer News aggregator. It shows the top lin
     - On the favourites page, the user is able to filter the links by typing in the search box.
 - Includes a setting page or a page with form components
   - Settings page
-    - Default feed category selector
+    - Default news type segmented panel
     - Maximum number of items in feed slider
   - Favourites page
     - Search box
@@ -47,7 +47,7 @@ Builder News is a Hacker News and Designer News aggregator. It shows the top lin
 - The app can display content dynamically
   - The feed is populated from a Hacker News and Designer News API that I built using Kimono Labs.
 - Settings or form components could modify the app's behaviours
-  - Has a selector to display the default category of news to display upon load of the site.
+  - Has a segmented panel to display the default category of news to display upon load of the site.
   - Has a slider to adjust the maximum number of items shown in the feed.
   - Search box on favourites page to filter out favourites
 
