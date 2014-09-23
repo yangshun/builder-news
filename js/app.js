@@ -48,6 +48,12 @@ function MainCtrl ($scope) {
     }
   }
 
+  $.subscribe('chui/navigate/enter', function (event, id) {
+    if (id === 'main') {
+      $scope.displayNews($scope.currentFilter);
+    }
+  });
+
   $scope.displayNews = function (type) {
     $scope.displayedNews = _.filter($scope.news, function (item) {
       if (type !== 'all') {
@@ -55,14 +61,19 @@ function MainCtrl ($scope) {
       }
       return true;
     });
-    $('.builder-news li').removeClass('animated bounceInUp');
+    var animations = {
+      all: 'bounceInUp',
+      hackernews: 'bounceInLeft',
+      designernews: 'bounceInRight'
+    }
+    $('.builder-news li').removeClass('animated bounceInUp bounceInLeft bounceInRight');
     var i = 0;
     setTimeout(function () {
       $('.builder-news li').each(function () {
         var that = this;
         (function (delay) {
           setTimeout(function () {
-            $(that).addClass('animated bounceInUp');  
+            $(that).addClass('animated ' + animations[type]);  
           }, delay);
         }(i * 100));
         i++;
