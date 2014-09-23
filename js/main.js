@@ -25,4 +25,5 @@ $(function () {
     var url = $(this).attr('data-link');
     window.open(url, '_blank');
   });
+
 });

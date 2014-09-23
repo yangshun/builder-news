@@ -12,7 +12,8 @@ function MainCtrl ($scope) {
     {id: 'all', name: 'All'},
     {id: 'hackernews', name: 'Hacker News'},
     {id: 'designernews', name: 'Designer News'}
-  ]
+  ];
+  $scope.linkTypes = {designernews: 'Designer News', hackernews: 'Hacker News'};
   
   localforage.getItem('favourites', function (favourites) {
     if (!favourites) {
