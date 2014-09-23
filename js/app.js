@@ -16,6 +16,22 @@ function MainCtrl ($scope) {
     $scope.favourites = favourites;
   });
 
+  localforage.getItem('defaultNews', function (defaultNews) {
+    if (!defaultNews) {
+      defaultNews = 'all';
+    }
+    $scope.defaultNews = defaultNews;
+    $scope.currentFilter = $scope.defaultNews;
+  });
+
+  localforage.getItem('defaultLimit', function (defaultLimit) {
+    if (!defaultLimit) {
+      defaultLimit = 30;
+    }
+    $scope.defaultLimit = defaultLimit;
+    $scope.$apply();
+  });
+
   function calculateTimeAgo (timeAgoString) {
     if (timeAgoString.indexOf('minute') > -1) {
       return parseInt(timeAgoString);
@@ -72,7 +88,7 @@ function MainCtrl ($scope) {
       $scope.favourites.push(item);
       localforage.setItem('favourites', $scope.favourites);
     }
-  }
+  };
 
   $scope.checkBookmark = function (url) {
     if (_.pluck($scope.favourites, 'url').indexOf(url) > -1) {
@@ -80,7 +96,7 @@ function MainCtrl ($scope) {
     } else {
       return 'fa-star-o';
     }
-  }
+  };
 
   var hackerNews = [];
   var hackerNewsLoaded = false;
@@ -166,9 +182,17 @@ function MainCtrl ($scope) {
     });
     $scope.news.reverse();
     $scope.loaded = true;
-    $scope.displayNews('all');
+    $scope.displayNews($scope.defaultNews);
     var i = 0;
     $('.builder-news').addClass('loaded');
     $scope.$apply();
   }
+
+  $scope.setDefaultLimit = function (number) {
+    localforage.setItem('defaultLimit', $scope.defaultLimit);
+  };
+
+  $scope.setDefaultNews = function (type) {
+    localforage.setItem('defaultNews', type);
+  };
 }

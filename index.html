@@ -24,15 +24,15 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="msapplication-TileImage" content="favicons/mstile-144x144.png">
 
-  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/animate.min.css">
   <link rel="stylesheet" href="css/chui-ios-3.7.0.min.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/chui-3.7.0.js"></script>
-  <script src="js/underscore-min.js"></script>
-  <script src="js/localforage.min.js"></script>
+  <script src="js/vendor/chui-3.7.0.js"></script>
+  <script src="js/vendor/underscore-min.js"></script>
+  <script src="js/vendor/localforage.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
 </head>
 <body ng-app ng-controller="MainCtrl">
@@ -51,7 +51,7 @@
       </div>
       <img src="img/loader.gif" class="loader" ng-show="!loaded">
       <ul class="list builder-news">
-        <li ng-repeat="item in displayedNews" class="bn-news-row">
+        <li ng-repeat="item in displayedNews | limitTo: defaultLimit" class="bn-news-row">
           <span class="bn-rank">{{$index + 1}}</span>
           <span class="bn-star" ng-click="bookmarkItem(item)">
             <i class="fa {{checkBookmark(item.url)}} fa-2x"></i>
@@ -74,7 +74,7 @@
   <nav>
     <h1>Favourites</h1>
   </nav>
-  <article id="Favourites" class="next">
+  <article id="favourites" class="next">
     <section>
       <div ng-show="favourites.length === 0" class="text-center empty-favourites-container">
         <i class="fa fa-star-o fa-4x"></i>
@@ -95,6 +95,37 @@
               <span>{{item.time}}</span> by {{item.author}} &middot;
               <span class="{{item.type}}">{{{designernews: 'Designer News', hackernews: 'Hacker News'}[item.type]}}</span>
             </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+  <nav>
+    <h1>Settings</h1>
+  </nav>
+  <article id="settings" class="next">
+    <section>
+      <ul class="list">
+        <li>
+          <div>
+            <h3>Default Feed</h3>
+            <p>The type of feed to show when you first load the app.</p>
+            <div class="horizontal centered bn-segment-container">
+              <div class="segmented bn-segments">
+                <a class="button bn-all selected" ng-click="makeDefault('all')">All</a>
+                <a class="button bn-hn" ng-click="makeDefault('hackernews')">Hacker</a>
+                <a class="button bn-dn" ng-click="makeDefault('designernews')">Designer</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Feed Limit</h3>
+            <p>The number of items to show on the home page.</p>
+            <h2 class="feed-limit text-center">{{defaultLimit}}</h2>
+            <input type="range" id="feed-limit-input" ng-value="defaultLimit" min="10" max="55" ng-model="defaultLimit" ng-change="setDefaultLimit()">
           </div>
         </li>
       </ul>

@@ -25,6 +25,10 @@ article > section {
   left: 0;
 }
 
+input[type=range] {
+  width: 100%;
+}
+
 .bn-segments .button {
   width: 33.33% !important;
 }
@@ -213,6 +217,15 @@ li:hover {
 
 .empty-favourites-container {
   margin-top: 50px;
+}
+
+/* Settings Page */
+
+.feed-limit {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+  font-size: 64px;
+  margin: 50px 0;
+  overflow: inherit;
 }
 
 /* About Page */
