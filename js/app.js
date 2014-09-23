@@ -65,8 +65,8 @@ function MainCtrl ($scope) {
       all: 'bounceInUp',
       hackernews: 'bounceInLeft',
       designernews: 'bounceInRight'
-    }
-    $('.builder-news li').removeClass('animated bounceInUp bounceInLeft bounceInRight');
+    };
+    $('.builder-news li').removeClass('animated ' + _.values(animations).join(' '));
     var i = 0;
     setTimeout(function () {
       $('.builder-news li').each(function () {
