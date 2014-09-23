@@ -191,6 +191,10 @@ a.button.backTo::before {
   margin: 0;
 }
 
+.bn-news-details {
+  font-size: 14px;
+}
+
 .bn-news-domain {
   color: #999;
 }
@@ -277,3 +281,23 @@ input[type="search"] {
   text-transform: inherit;
 }
 
+@media (max-width: 400px) {
+  /* For iPhone */
+  .tabbar label {
+    font-size: 12px;
+  }
+  .empty-favourites {
+    font-size: 18px;
+  }
+  .bn-icon {
+    width: 88px;
+  }
+  .bn-news-title {
+    font-size: 14px;
+    line-height: 14px;
+  }
+  .bn-news-details {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}

@@ -10,8 +10,8 @@ function MainCtrl ($scope) {
   $scope.loaded = false;
   $scope.newsTypes = [
     {id: 'all', name: 'All'},
-    {id: 'hackernews', name: 'Hacker News'},
-    {id: 'designernews', name: 'Designer News'}
+    {id: 'hackernews', name: 'Hacker'},
+    {id: 'designernews', name: 'Designer'}
   ];
   $scope.linkTypes = {designernews: 'Designer News', hackernews: 'Hacker News'};
   
