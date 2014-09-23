@@ -110,20 +110,20 @@ a.button.backTo::before {
   color: #fff !important;
 }
 
-.bn-hn {
+.bn-hackernews {
   color: #ee6218 !important;
 }
 
-.bn-hn.selected {
+.bn-hackernews.selected {
   background-color: #ee6218 !important;
   color: #fff !important
 }
 
-.bn-dn {
+.bn-designernews {
   color: #2753d2 !important;
 }
 
-.bn-dn.selected {
+.bn-designernews.selected {
   background-color: #2753d2 !important;
   color: #fff !important;
 }

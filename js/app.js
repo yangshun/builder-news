@@ -8,6 +8,11 @@ function MainCtrl ($scope) {
   $scope.currentFilter = 'all';
   $scope.selectedItem = null;
   $scope.loaded = false;
+  $scope.newsTypes = [
+    {id: 'all', name: 'All'},
+    {id: 'hackernews', name: 'Hacker News'},
+    {id: 'designernews', name: 'Designer News'}
+  ]
   
   localforage.getItem('favourites', function (favourites) {
     if (!favourites) {

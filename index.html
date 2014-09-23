@@ -44,9 +44,7 @@
     <section>
       <div class="horizontal centered bn-segment-container">
         <div class="segmented bn-segments">
-          <a class="button bn-all selected" ng-click="displayNews('all')">All</a>
-          <a class="button bn-hn" ng-click="displayNews('hackernews')">Hacker</a>
-          <a class="button bn-dn" ng-click="displayNews('designernews')">Designer</a>
+          <a ng-repeat="type in newsTypes" class="button bn-{{type.id}} {{{true: 'selected'}[defaultNews === type.id]}}" ng-click="displayNews(type.id)">{{type.name}}</a>
         </div>
       </div>
       <img src="img/loader.gif" class="loader" ng-show="!loaded">
@@ -113,9 +111,7 @@
             <p>The type of feed to show when you first load the app.</p>
             <div class="horizontal centered bn-segment-container">
               <div class="segmented bn-segments">
-                <a class="button bn-all selected" ng-click="makeDefault('all')">All</a>
-                <a class="button bn-hn" ng-click="makeDefault('hackernews')">Hacker</a>
-                <a class="button bn-dn" ng-click="makeDefault('designernews')">Designer</a>
+                <a ng-repeat="type in newsTypes" class="button bn-{{type.id}} {{{true: 'selected'}[defaultNews === type.id]}}" ng-click="setDefaultNews(type.id)">{{type.name}}</a>
               </div>
             </div>
           </div>
