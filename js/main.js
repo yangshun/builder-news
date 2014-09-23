@@ -1,5 +1,5 @@
 $(function () {
-  $('.segmented').UIPanelToggle('#toggle-panels',function (){
+  $('.segmented').UIPanelToggle('#toggle-panels',function () {
     $.noop;
   });
   
@@ -20,10 +20,4 @@ $(function () {
       $('#feed-limit-input').UIRange();
     }
   });
-
-  $('.bn-about-list li').on('singletap', function () {
-    var url = $(this).attr('data-link');
-    window.open(url, '_blank');
-  });
-
 });

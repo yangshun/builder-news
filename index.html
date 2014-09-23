@@ -54,7 +54,7 @@
           <span class="bn-star" ng-click="bookmarkItem(item)">
             <i class="fa {{checkBookmark(item.url)}} fa-2x"></i>
           </span>
-          <div class="bn-news-item" ng-click="selectItem(item)">
+          <div class="bn-news-item" ng-click="openLink(item.url)">
             <h3 class="bn-news-title">{{item.title}} 
               <span ng-show="item.domain.length > 0" class="bn-news-domain">({{item.domain}})</span>
             </h3>
@@ -144,17 +144,8 @@
         <h2 class="bn-app-name text-center">Builder News</h2>
         <h3 class="text-center">An aggregator for Hacker News and Designer News</h3>
         <ul class="list bn-about-list">
-          <li class="nav" data-link="https://news.ycombinator.com/news">
-            <h3><i class="fa fa-hacker-news fa-lg hackernews"></i> Hacker News Homepage</h3>
-          </li>
-          <li class="nav" data-link="https://news.layervault.com/">
-            <h3><i class="fa fa-picture-o fa-lg designernews"></i> Designer News Homepage</h3>
-          </li>
-          <li class="nav" data-link="https://github.com/yangshun/builder-news">
-            <h3><i class="fa fa-github fa-lg"></i> Builder News on Github</h3>
-          </li>
-          <li class="nav" data-link="mailto:tay.yang.shun@gmail.com">
-            <h3><i class="fa fa-envelope-o fa-lg contact-icon"></i> Send Feedback</h3>
+          <li ng-repeat="link in aboutLinks" class="nav" ng-click="openLink(link.url)">
+            <h3><i ng-class="link.class"></i> {{link.text}}</h3>
           </li>
         </ul>
         <h3 class="text-center">Built by Tay Yang Shun</h3>

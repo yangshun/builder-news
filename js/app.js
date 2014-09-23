@@ -55,7 +55,7 @@ function MainCtrl ($scope) {
       }
       return true;
     });
-    $('.builder-news li').removeClass('animated');
+    $('.builder-news li').removeClass('animated bounceInUp');
     var i = 0;
     setTimeout(function () {
       $('.builder-news li').each(function () {
@@ -70,8 +70,8 @@ function MainCtrl ($scope) {
     }, 0);
   };
 
-  $scope.selectItem = function (item) {
-    window.open(item.url, '_blank');
+  $scope.openLink = function (url) {
+    window.open(url, '_blank');
   };
 
   $scope.bookmarkItem = function (item) {
@@ -201,4 +201,27 @@ function MainCtrl ($scope) {
   $scope.setDefaultNews = function (type) {
     localforage.setItem('defaultNews', type);
   };
+
+  $scope.aboutLinks = [
+    {
+      url: 'https://news.ycombinator.com/news',
+      class: 'fa fa-hacker-news fa-lg hackernews',
+      text: 'Hacker News Homepage'
+    },
+    {
+      url: 'https://news.layervault.com',
+      class: 'fa fa-picture-o fa-lg designernews',
+      text: 'Designer News Homepage'
+    },
+    {
+      url: 'https://github.com/yangshun/builder-news',
+      class: 'fa fa-github fa-lg',
+      text: 'Builder News on Github'
+    },
+    {
+      url: 'mailto:tay.yang.shun@gmail.com',
+      class: 'fa fa-envelope-o fa-lg contact-icon',
+      text: 'Send Feedback'
+    }
+  ];
 }
