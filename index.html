@@ -72,16 +72,16 @@
   </article>
 
   <nav>
-    <h1>Bookmarks</h1>
+    <h1>Favourites</h1>
   </nav>
-  <article id="bookmarks" class="next">
+  <article id="Favourites" class="next">
     <section>
-      <div ng-show="bookmarks.length === 0" class="text-center empty-favourites-container">
+      <div ng-show="favourites.length === 0" class="text-center empty-favourites-container">
         <i class="fa fa-star-o fa-4x"></i>
         <h3 class="empty-favourites">Your favourites list is empty.<br>Click on the <i class="fa fa-star-o"></i> icon to<br> add links to your favourites.</h3>
       </div>
       <ul class="list">
-        <li ng-repeat="item in bookmarks track by $index" class="bn-news-row">
+        <li ng-repeat="item in favourites track by $index" class="bn-news-row">
           <span class="bn-rank">{{$index + 1}}</span>
           <span class="bn-star" ng-click="bookmarkItem(item)">
             <i class="fa fa-times fa-lg"></i>

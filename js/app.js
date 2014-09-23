@@ -1,15 +1,19 @@
 function MainCtrl ($scope) {
+  var HACKER_NEWS_API = 'https://www.kimonolabs.com/api/2he37zjs';
+  var DESIGNER_NEWS_API = 'https://www.kimonolabs.com/api/6dts50j0';
+  var ACCESS_TOKEN = 'lC5em34Ewkmh4mK8CPTGeEDJer15kwus';
+
   $scope.news = [];
   $scope.displayedNews = [];
   $scope.currentFilter = 'all';
   $scope.selectedItem = null;
   $scope.loaded = false;
   
-  localforage.getItem('bookmarks', function (bookmarks) {
-    if (!bookmarks) {
-      bookmarks = [];
+  localforage.getItem('favourites', function (favourites) {
+    if (!favourites) {
+      favourites = [];
     }
-    $scope.bookmarks = bookmarks;
+    $scope.favourites = favourites;
   });
 
   function calculateTimeAgo (timeAgoString) {
@@ -49,7 +53,7 @@ function MainCtrl ($scope) {
   };
 
   $scope.bookmarkItem = function (item) {
-    if (_.pluck($scope.bookmarks, 'url').indexOf(item.url) > -1) {
+    if (_.pluck($scope.favourites, 'url').indexOf(item.url) > -1) {
       $.UIPopup({
         id: 'warning',
         title: 'Remove Favourite', 
@@ -57,21 +61,21 @@ function MainCtrl ($scope) {
         cancelButton: 'No', 
         continueButton: 'Yes', 
         callback: function() {
-          $scope.bookmarks = _.reject($scope.bookmarks, function(bm) { 
+          $scope.favourites = _.reject($scope.favourites, function(bm) { 
             return bm.url == item.url; 
           });
-          localforage.setItem('bookmarks', $scope.bookmarks);
+          localforage.setItem('favourites', $scope.favourites);
           $scope.$apply();
         }
       });
     } else {
-      $scope.bookmarks.push(item);
-      localforage.setItem('bookmarks', $scope.bookmarks);
+      $scope.favourites.push(item);
+      localforage.setItem('favourites', $scope.favourites);
     }
   }
 
   $scope.checkBookmark = function (url) {
-    if (_.pluck($scope.bookmarks, 'url').indexOf(url) > -1) {
+    if (_.pluck($scope.favourites, 'url').indexOf(url) > -1) {
       return 'fa-star';
     } else {
       return 'fa-star-o';
@@ -83,7 +87,7 @@ function MainCtrl ($scope) {
 
   $.ajax({
     method: 'GET',
-    url: 'https://www.kimonolabs.com/api/2he37zjs?apikey=lC5em34Ewkmh4mK8CPTGeEDJer15kwus', 
+    url: HACKER_NEWS_API + '?apikey=' + ACCESS_TOKEN,
     dataType: 'jsonp',
     crossDomain: true,
     success: function (data) {
@@ -118,7 +122,7 @@ function MainCtrl ($scope) {
 
   $.ajax({
     method: 'GET',
-    url: 'https://www.kimonolabs.com/api/6dts50j0?apikey=lC5em34Ewkmh4mK8CPTGeEDJer15kwus', 
+    url: DESIGNER_NEWS_API + '?apikey=' + ACCESS_TOKEN,
     dataType: 'jsonp',
     crossDomain: true,
     success: function (data) {
@@ -165,17 +169,6 @@ function MainCtrl ($scope) {
     $scope.displayNews('all');
     var i = 0;
     $('.builder-news').addClass('loaded');
-    // setTimeout(function () {
-    //   $('.builder-news li').each(function () {
-    //     var that = this;
-    //     (function (delay) {
-    //       setTimeout(function () {
-    //         $(that).addClass('animated bounceInUp');  
-    //       }, delay);
-    //     }(i * 100));
-    //     i++;
-    //   });
-    // }, 0);
     $scope.$apply();
   }
 }
