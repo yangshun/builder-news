@@ -14,6 +14,7 @@ Builder News is a Hacker News and Designer News aggregator. It shows the top lin
 ### Features
 - Combined content from Hacker News and Designer News
 - Bookmarking features
+- Shows which links you have read
 - Flashy animations
 
 ### Grading Rubrics
@@ -56,6 +57,6 @@ Builder News is a Hacker News and Designer News aggregator. It shows the top lin
   - There are no complex user interactions in the page and it is simple to use.
   - The interface is not cluttered and makes use of conventional mobile app layouts.
   - A confirmation popup is presented to the user in case the user accidentally unfavourites a link.
-
+  - After a user has clicked on the link, it is permanently marked as read as shown by the green "Read" text. This helps the user to keep track of which links he has not read.
 
 By Tay Yang Shun (A0073063M)
