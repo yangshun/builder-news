@@ -22,6 +22,13 @@ function MainCtrl ($scope) {
     $scope.favourites = favourites;
   });
 
+  localforage.getItem('readNews', function (read) {
+    if (!read) {
+      read = [];
+    }
+    $scope.readNews = read;
+  });
+
   localforage.getItem('defaultNews', function (defaultNews) {
     if (!defaultNews) {
       defaultNews = 'all';
@@ -81,11 +88,17 @@ function MainCtrl ($scope) {
     }, 0);
   };
 
+  $scope.readItem = function (item) {
+    $scope.readNews.push(item);
+    localforage.setItem('readNews', $scope.readNews);
+    $scope.openLink(item.url);
+  };
+
   $scope.openLink = function (url) {
     window.open(url, '_blank');
   };
 
-  $scope.bookmarkItem = function (item) {
+  $scope.favouriteItem = function (item) {
     if (_.pluck($scope.favourites, 'url').indexOf(item.url) > -1) {
       $.UIPopup({
         id: 'warning',
@@ -107,12 +120,12 @@ function MainCtrl ($scope) {
     }
   };
 
-  $scope.checkBookmark = function (url) {
-    if (_.pluck($scope.favourites, 'url').indexOf(url) > -1) {
-      return 'fa-star';
-    } else {
-      return 'fa-star-o';
-    }
+  $scope.checkFavourite = function (url) {
+    return _.pluck($scope.favourites, 'url').indexOf(url) > -1 ? 'fa-star' : 'fa-star-o';
+  };
+
+  $scope.checkRead = function (url) {
+    return _.pluck($scope.readNews, 'url').indexOf(url) > -1;
   };
 
   var hackerNews = [];

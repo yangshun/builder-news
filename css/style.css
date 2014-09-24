@@ -204,11 +204,15 @@ li {
 }
 
 li:hover {
-  background-color: #ededed;
+  background-color: #fafafa;
 }
 
 .fa-star {
   color: #ffbf00;
+}
+
+.bn-read {
+  color: #56db22;
 }
 
 /* Favourites */
@@ -294,7 +298,8 @@ input[type="search"] {
   }
   .bn-news-title {
     font-size: 14px;
-    line-height: 14px;
+    line-height: 18px !important;
+    margin-bottom: 3px;
   }
   .bn-news-details {
     font-size: 12px;

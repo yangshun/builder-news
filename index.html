@@ -51,17 +51,20 @@
       <ul class="list builder-news">
         <li ng-repeat="item in displayedNews | limitTo: defaultLimit" class="bn-news-row">
           <span class="bn-rank">{{$index + 1}}</span>
-          <span class="bn-star" ng-click="bookmarkItem(item)">
-            <i class="fa {{checkBookmark(item.url)}} fa-2x"></i>
+          <span class="bn-star" ng-click="favouriteItem(item)">
+            <i class="fa {{checkFavourite(item.url)}} fa-2x"></i>
           </span>
-          <div class="bn-news-item" ng-click="openLink(item.url)">
+          <div class="bn-news-item" ng-click="readItem(item)">
             <h3 class="bn-news-title">{{item.title}} 
               <span ng-show="item.domain.length > 0" class="bn-news-domain">({{item.domain}})</span>
             </h3>
             <div class="bn-news-details">
-              <span>{{item.points_text}}</span> and <span>{{item.comments}}</span> &middot;
-              <span>{{item.time}}</span> by {{item.author}} &middot;
+              <span ng-show="item.points_text.length > 0">{{item.points_text}} and</span>
+              <span ng-show="item.comments.length > 0">{{item.comments}} &middot;</span>
+              <span ng-show="item.time.length > 0">{{item.time}}</span>
+              <span ng-show="item.author.length > 0"> by {{item.author}} &middot;</span>
               <span class="{{item.type}}">{{linkTypes[item.type]}}</span>
+              <span class="bn-read" ng-show="checkRead(item.url)">&middot; Read</span>
             </div>
           </div>
         </li>
@@ -86,19 +89,20 @@
       </div>
       <ul class="list">
         <li ng-repeat="item in favourites | filter:searchText" class="bn-news-row">
-          <span class="bn-star" ng-click="bookmarkItem(item)">
+          <span class="bn-star" ng-click="favouriteItem(item)">
             <i class="fa fa-times fa-lg"></i>
           </span>
-          <div class="bn-news-item" ng-click="selectItem(item)">
+          <div class="bn-news-item" ng-click="readItem(item)">
             <h3 class="bn-news-title">{{item.title}} 
               <span ng-show="item.domain.length > 0" class="bn-news-domain">({{item.domain}})</span>
             </h3>
-            <div>
+            <div class="bn-news-details">
               <span ng-show="item.points_text.length > 0">{{item.points_text}} and</span>
               <span ng-show="item.comments.length > 0">{{item.comments}} &middot;</span>
               <span ng-show="item.time.length > 0">{{item.time}}</span>
               <span ng-show="item.author.length > 0"> by {{item.author}} &middot;</span>
               <span class="{{item.type}}">{{linkTypes[item.type]}}</span>
+              <span class="bn-read" ng-show="checkRead(item.url)">&middot; Read</span>
             </div>
           </div>
         </li>
