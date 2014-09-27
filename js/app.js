@@ -57,7 +57,7 @@ function MainCtrl ($scope) {
 
   $.subscribe('chui/navigate/enter', function (event, id) {
     if (id === 'main') {
-      $scope.displayNews($scope.currentFilter);
+      $scope.displayNews($scope.defaultNews);
     }
   });
 
@@ -223,7 +223,8 @@ function MainCtrl ($scope) {
   };
 
   $scope.setDefaultNews = function (type) {
-    localforage.setItem('defaultNews', type);
+    $scope.defaultNews = type;
+    localforage.setItem('defaultNews', $scope.defaultNews);
   };
 
   $scope.aboutLinks = [
