@@ -62,6 +62,7 @@ function MainCtrl ($scope) {
   });
 
   $scope.displayNews = function (type) {
+    $scope.currentFilter = type;
     $scope.displayedNews = _.filter($scope.news, function (item) {
       if (type !== 'all') {
         return item.type === type;
@@ -213,7 +214,6 @@ function MainCtrl ($scope) {
     $scope.news.reverse();
     $scope.loaded = true;
     $scope.displayNews($scope.defaultNews);
-    var i = 0;
     $('.builder-news').addClass('loaded');
     $scope.$apply();
   }
