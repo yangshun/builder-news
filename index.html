@@ -40,11 +40,11 @@
   <nav>
     <h1>Builder News</h1>
   </nav>
-  <article id="main" class="current">
+  <article id="main" class="current bn-main">
     <section>
       <div class="horizontal centered bn-segment-container">
         <div class="segmented bn-segments">
-          <a ng-repeat="type in newsTypes" ng-class="selectorClasses[type.id]" ng-click="displayNews(type.id)">{{type.name}}</a>
+          <a data-type="{{type.id}}" ng-repeat="type in newsTypes" ng-class="selectorClasses[type.id]" ng-click="displayNews(type.id)">{{type.name}}</a>
         </div>
       </div>
       <img src="img/loader.gif" class="loader" ng-show="!loaded">

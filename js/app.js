@@ -62,15 +62,18 @@ function MainCtrl ($scope) {
   }
 
   function renderSelectedNews (type) {
+    console.log('selectedNews', type);
     _.each($scope.selectorClasses, function (item) {
       item.selected = false;
     });
     $scope.selectorClasses[type].selected = true;
+    $scope.$apply();
   }
 
   $.subscribe('chui/navigate/enter', function (event, id) {
     if (id === 'main') {
-      renderSelectedNews($scope.defaultNews);
+      $('.bn-main .bn-segments a').removeClass('selected');
+      $('.bn-main .bn-segments a[data-type="' + $scope.defaultNews + '"]').addClass('selected');
       $scope.displayNews($scope.defaultNews, true);
     }
   });
