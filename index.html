@@ -44,12 +44,12 @@
     <section>
       <div class="horizontal centered bn-segment-container">
         <div class="segmented bn-segments">
-          <a ng-repeat="type in newsTypes" class="button bn-{{type.id}} {{{true: 'selected'}[defaultNews === type.id]}}" ng-click="displayNews(type.id)">{{type.name}}</a>
+          <a ng-repeat="type in newsTypes" ng-class="selectorClasses[type.id]" ng-click="displayNews(type.id)">{{type.name}}</a>
         </div>
       </div>
       <img src="img/loader.gif" class="loader" ng-show="!loaded">
       <ul class="list builder-news">
-        <li ng-repeat="item in displayedNews | limitTo: defaultLimit" class="bn-news-row">
+        <li ng-repeat="item in displayedNews | limitTo: defaultLimit track by $index" class="bn-news-row">
           <span class="bn-rank">{{$index + 1}}</span>
           <span class="bn-star" ng-click="favouriteItem(item)">
             <i class="fa {{checkFavourite(item.url)}} fa-2x"></i>
@@ -88,7 +88,7 @@
         <input placeholder="Find a favourited link" type="search" ng-model="searchText">
       </div>
       <ul class="list">
-        <li ng-repeat="item in favourites | filter:searchText" class="bn-news-row">
+        <li ng-repeat="item in favourites | filter:searchText track by $index" class="bn-news-row">
           <span class="bn-star" ng-click="favouriteItem(item)">
             <i class="fa fa-times fa-lg"></i>
           </span>

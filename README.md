@@ -15,7 +15,6 @@ Builder News is a Hacker News and Designer News aggregator. It shows the top lin
 - Combined content from Hacker News and Designer News
 - Bookmarking features
 - Shows which links you have read
-- Flashy animations
 
 ### Grading Rubrics
 

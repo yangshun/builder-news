@@ -14,6 +14,11 @@ function MainCtrl ($scope) {
     {id: 'designernews', name: 'Designer'}
   ];
   $scope.linkTypes = {designernews: 'Designer News', hackernews: 'Hacker News'};
+  $scope.selectorClasses = {
+    'all': {'button': true, 'bn-all': true, 'selected': false},
+    'hackernews': {'button': true, 'bn-hackernews': true, 'selected': false},
+    'designernews': {'button': true, 'bn-designernews': true, 'selected': false}
+  }
   
   localforage.getItem('favourites', function (favourites) {
     if (!favourites) {
@@ -34,6 +39,7 @@ function MainCtrl ($scope) {
       defaultNews = 'all';
     }
     $scope.defaultNews = defaultNews;
+    renderSelectedNews(defaultNews);
     $scope.currentFilter = $scope.defaultNews;
   });
 
@@ -55,38 +61,51 @@ function MainCtrl ($scope) {
     }
   }
 
+  function renderSelectedNews (type) {
+    _.each($scope.selectorClasses, function (item) {
+      item.selected = false;
+    });
+    $scope.selectorClasses[type].selected = true;
+  }
+
   $.subscribe('chui/navigate/enter', function (event, id) {
     if (id === 'main') {
-      $scope.displayNews($scope.defaultNews);
+      renderSelectedNews($scope.defaultNews);
+      $scope.displayNews($scope.defaultNews, true);
     }
   });
 
-  $scope.displayNews = function (type) {
-    $scope.currentFilter = type;
+  $scope.displayNews = function (type, fromNav) {
+    $scope.currentFilter = $scope.defaultNews;
     $scope.displayedNews = _.filter($scope.news, function (item) {
       if (type !== 'all') {
         return item.type === type;
       }
       return true;
     });
-    var animations = {
-      all: 'bounceInUp',
-      hackernews: 'bounceInLeft',
-      designernews: 'bounceInRight'
-    };
-    $('.builder-news li').removeClass('animated ' + _.values(animations).join(' '));
-    var i = 0;
-    setTimeout(function () {
-      $('.builder-news li').each(function () {
-        var that = this;
-        (function (delay) {
-          setTimeout(function () {
-            $(that).addClass('animated ' + animations[type]);  
-          }, delay);
-        }(i * 100));
-        i++;
-      });
-    }, 0);
+    if (fromNav) {
+      $scope.$apply();
+    }
+    // var animations = {
+    //   all: 'bounceInUp',
+    //   hackernews: 'bounceInLeft',
+    //   designernews: 'bounceInRight'
+    // };
+    // var i = 0;
+    // setTimeout(function () {
+    //   $('.builder-news li').removeClass('animated ' + _.values(animations).join(' '));
+    //   console.log($('.builder-news li').length);
+    //   $('.builder-news li').each(function () {
+    //     var that = this;
+    //     (function (delay) {
+    //       setTimeout(function () {
+    //         $(that).addClass('animated ' + animations[type]);  
+    //       }, delay);
+    //     }(i * 100));
+    //     i++;
+    //   });
+    //   $scope.$apply();
+    // }, 0);
   };
 
   $scope.readItem = function (item) {
@@ -213,8 +232,7 @@ function MainCtrl ($scope) {
     });
     $scope.news.reverse();
     $scope.loaded = true;
-    $scope.displayNews($scope.defaultNews);
-    $('.builder-news').addClass('loaded');
+    $scope.displayNews($scope.defaultNews, false);
     $scope.$apply();
   }
 

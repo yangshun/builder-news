@@ -130,22 +130,6 @@ a.button.backTo::before {
 
 /* News Items */
 
-.builder-news {
-  opacity: 0;
-}
-
-.builder-news.loaded {
-  opacity: 1;
-}
-
-.builder-news li {
-  opacity: 0;
-}
-
-.builder-news li.animated {
-  opacity: 1;
-}
-
 .bn-rank {
   color: #c3c9d2;
   display: inline-block;
